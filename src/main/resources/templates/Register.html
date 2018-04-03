@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Register New User</title>
@@ -34,6 +34,43 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<div class="container">
+
+    <br/>
+    <br/>
+    <p class="lead">
+        <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+    <p>
+
+    <div class="input-group" >
+        <span class="input-group-addon" id="basic-addon3">@</span>
+        <input type="text" class="form-control" id="email" name="emailReg" placeholder="EMAIL" required="true" aria-describedby="basic-addon1" style="width: 300px" />
+    </div>
+    </p>
+    <p>
+    <div class="input-group" >
+        <span class="input-group-addon" id="basic-addon3"> >> </span>
+        <input type="text" class="form-control" id="username" name="usernameReg" placeholder="USERNAME" required="true" aria-describedby="basic-addon1" style="width: 300px" />
+    </div>
+    </p>
+    <p>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon4"> >> </span>
+        <input type="password" class="form-control" id="password" name="passwordReg" placeholder="PASSWORD" required="true" aria-describedby="basic-addon1" style="width: 300px"/>
+    </div>
+    </p>
+
+    <p>
+    <div class="btn-toolbar" role="toolbar" aria-label="...">
+        <div class="btn-group" role="group" aria-label="Create User"><button type="submit" class="btn btn-default">Log In</button></div>
+    </div>
+    </p>
+    </form>
+    </p>
+
+
+</div>
 
 </body>
 </html>

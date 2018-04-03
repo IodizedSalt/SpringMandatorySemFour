@@ -1,6 +1,8 @@
-package com.mandatory.semfour;
+package com.mandatory.semfour.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +13,16 @@ public class User {
 
     private static List<User> userList = new ArrayList<>();
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     @Id
+    private int Id;
     private String username;
     private String password;
     private String email;
 
-    public User(String username, String password, String email) {
+    public User(int id, String username, String password, String email) {
+        this.Id = id;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -61,9 +66,34 @@ public class User {
         this.email = email;
     }
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public static User getUserById(long id){
+        List<User> list = User.getUserList();
+
+        User theOne = new User(-1, "rootUser", "rootPassword","root@rootymail.com");
+        for (int i = 0; i < list.size(); i++) {
+            User u = list.get(i);
+            if (u.getId() == id) {
+                System.out.println(u);
+                theOne = u;
+                break;
+            }
+        }
+        return theOne;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
+                "id=" + Id +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
