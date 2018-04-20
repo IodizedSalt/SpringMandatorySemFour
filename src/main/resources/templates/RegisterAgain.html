@@ -36,12 +36,12 @@
 </nav>
 
 <div class="container">
-
     <br/>
     <br/>
     <p class="lead">
         <form action="#" th:action="@{/register}" th:object="${user}" method="post">
     <p>
+    <h5 style="color:darkred"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Duplicate Username or Email detected, please enter new credentials</h5>
 
     <div class="input-group" >
         <span class="input-group-addon" id="basic-addon3">@</span>
@@ -74,3 +74,5 @@
 
 </body>
 </html>
+
+<!-- This was meant to just be a simple JS alert popup, but I cannot figure out how to do that with spring :( -->

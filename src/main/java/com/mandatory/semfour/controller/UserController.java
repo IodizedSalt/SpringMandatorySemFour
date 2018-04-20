@@ -2,6 +2,7 @@ package com.mandatory.semfour.controller;
 
 import com.mandatory.semfour.entity.User;
 import com.mandatory.semfour.repository.UserRepository;
+import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,26 +41,28 @@ public class UserController {
             return mvUserLoggedIn;
         }
     }
-                                                    //TODO CHECK USERNAME FOR DUPLICATES AND DONT Allow
-                                                    //LINE 52/53 BREAKS, 55-60 ADDS DEFAULT USER
-
     @PostMapping(value = "/register")
     private ModelAndView registerNew(@RequestParam (name = "Id", defaultValue = "-1") int Id,
                                      @RequestParam(name = "emailReg") String email,
                                      @RequestParam(name="usernameReg") String username,
                                      @RequestParam(name = "passwordReg") String password){
         try{
-//            String user = ur.findOne(username).toString();
-//            System.out.println(user);
-            User u = User.getUserById(Id);
-            if (Id != -1){
-                u.setEmail(email);
-                u.setUsername(username);
-                u.setPassword(password);
-            }
+
+            User u = new User(Id, ur.findByEmail(email), password, ur.findByUsername(username));
+            u.setEmail(email);
+            u.setPassword(password);
+            u.setUsername(username);
             ur.save(u);
+
+
         }catch (NullPointerException e) {
             System.out.println("NULL ERROR");
+        }catch (ClassCastException e){
+            System.out.println("DUPLICATE DETECTED");   //TODO display specific username/email duplicate error
+//            TODO add error message on HTML for user
+            ModelAndView mv = new ModelAndView("RegisterAgain");
+            return mv;
+
         }
         ModelAndView mv = new ModelAndView("HomePageLoggedIn");
         return mv;
