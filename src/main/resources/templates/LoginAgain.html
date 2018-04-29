@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Register New User</title>
+    <title>Log In</title>
 
     <!-- BOOTSTRAP REFERENCES -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -39,31 +39,30 @@
     <br/>
     <br/>
     <p class="lead">
-        <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+        <form action="#" th:action="@{/login}" th:object="${user}" method="post">
     <p>
-    <h5 style="color:darkred"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Duplicate Username or Email detected, please enter new credentials</h5>
+    <h5 style="color:darkred"> &nbsp;&nbsp;Invalid Login Credentials. Please Try Again</h5>
 
     <div class="input-group" >
-        <span class="input-group-addon" id="basic-addon3">@</span>
-        <input type="email" class="form-control" id="email" name="emailReg" placeholder="EMAIL" required="true" aria-describedby="basic-addon1" style="width: 300px" />
+        <span class="input-group-addon" id="basic-addon3">Username  »»</span>
+        <input type="text" class="form-control" id="username" name="username" placeholder="USERNAME" required="true" aria-describedby="basic-addon1" style="width: 300px" />
     </div>
+
     </p>
-    <p>
-    <div class="input-group" >
-        <span class="input-group-addon" id="basic-addon3"> Username »» </span>
-        <input type="text" class="form-control" id="username" name="usernameReg" placeholder="USERNAME" required="true" aria-describedby="basic-addon1" style="width: 300px" />
-    </div>
-    </p>
+
     <p>
     <div class="input-group">
-        <span class="input-group-addon" id="basic-addon4"> Password »» </span>
-        <input type="password" class="form-control" id="password" name="passwordReg" placeholder="PASSWORD" required="true" aria-describedby="basic-addon1" style="width: 300px"/>
+        <span class="input-group-addon" id="basic-addon4">Password  »»</span>
+        <input type="password" class="form-control" id="password" name="password" placeholder="PASSWORD" required="true" aria-describedby="basic-addon1" style="width: 300px"/>
     </div>
     </p>
 
     <p>
     <div class="btn-toolbar" role="toolbar" aria-label="...">
-        <div class="btn-group" role="group" aria-label="Create User"><button type="submit" class="btn btn-default" >Register</button></div>
+        <div class="btn-group" role="group" aria-label="Log In"><button type="submit" class="btn btn-default">Log In</button></div>
+        <div class="indent">
+            <h6><a href="/register"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Don't have an account? Register Here</a></h6>
+        </div>
     </div>
     </p>
     </form>
@@ -71,8 +70,5 @@
 
 
 </div>
-
 </body>
 </html>
-
-<!-- This was meant to just be a simple JS alert popup, but I cannot figure out how to do that with spring :( -->

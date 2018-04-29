@@ -39,11 +39,11 @@
     <br/>
     <br/>
     <p class="lead">
-        <form action="#" th:action="@{/user/login}" th:object="${user}" method="post">
+        <form action="#" th:action="@{/login}" th:object="${user}" method="post">
     <p>
 
     <div class="input-group" >
-        <span class="input-group-addon" id="basic-addon3">@</span>
+        <span class="input-group-addon" id="basic-addon3">Username  »»</span>
         <input type="text" class="form-control" id="username" name="username" placeholder="USERNAME" required="true" aria-describedby="basic-addon1" style="width: 300px" />
     </div>
 
@@ -51,7 +51,7 @@
 
     <p>
     <div class="input-group">
-        <span class="input-group-addon" id="basic-addon4">»»</span>
+        <span class="input-group-addon" id="basic-addon4">Password  »»</span>
         <input type="password" class="form-control" id="password" name="password" placeholder="PASSWORD" required="true" aria-describedby="basic-addon1" style="width: 300px"/>
     </div>
     </p>

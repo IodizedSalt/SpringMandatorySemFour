@@ -1,10 +1,11 @@
 package com.mandatory.semfour.controller;
 
 import com.mandatory.semfour.entity.User;
+import com.mandatory.semfour.entity.UserRole;
 import com.mandatory.semfour.repository.UserRepository;
-import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,56 +16,45 @@ public class UserController {
     @Autowired
     public UserRepository ur;
 
+@RequestMapping("/login") //TODO HIDE LOG IN IF ALREADY LOGGED IN
+public ModelAndView login() //TODO SHOW USER THAT IS LOGGED IN IN TOP
+{
+    ModelAndView mv = new ModelAndView("LogIn");
+    return mv;
+}
+@RequestMapping("/loginAgain")
+public ModelAndView loginAgain()
+{
+    ModelAndView mv = new ModelAndView("LoginAgain");
+    return mv;
+}
 
-
-    @PostMapping(value = "/user/login")
-    private ModelAndView checkUserLogIn(@RequestParam(name = "username") String username,
-                                    @RequestParam(name = "password") String password) {
-
-        try {
-            String user = ur.findOne(username).getPassword();
-            System.out.print(user.toString() + " ");
-
-            if(user.equals(password)){
-                System.out.println("LOG IN SUCCESS");
-                ModelAndView mv = new ModelAndView("HomePageLoggedIn");
-                return mv;
-            }else{
-                System.out.println("ACCESS DENIED _ INVALID PASSWORD");
-                ModelAndView mvStudent = new ModelAndView("LogIn");
-                return mvStudent;
-            }
-        } catch (NullPointerException e) {
-            System.out.println("ACCESS DENIED_INVALID USERNAME_?ALSO PASSWORD?");
-
-            ModelAndView mvUserLoggedIn = new ModelAndView("LogIn");
-            return mvUserLoggedIn;
-        }
-    }
     @PostMapping(value = "/register")
     private ModelAndView registerNew(@RequestParam (name = "Id", defaultValue = "-1") int Id,
                                      @RequestParam(name = "emailReg") String email,
-                                     @RequestParam(name="usernameReg") String username,
+                                     @RequestParam(name="usernameReg", defaultValue = "DEFAULT_USER") String username,
                                      @RequestParam(name = "passwordReg") String password){
         try{
 
             User u = new User(Id, ur.findByEmail(email), password, ur.findByUsername(username));
+            UserRole urr = new UserRole("ROLE_USER");
+            u.setId(Id);
             u.setEmail(email);
             u.setPassword(password);
             u.setUsername(username);
+            u.setEnabled(true);
+            u.setRole(urr);
             ur.save(u);
-
 
         }catch (NullPointerException e) {
             System.out.println("NULL ERROR");
         }catch (ClassCastException e){
-            System.out.println("DUPLICATE DETECTED");   //TODO display specific username/email duplicate error
-//            TODO add error message on HTML for user
+            System.out.println("DUPLICATE DETECTED");                       //TODO display specific username/email duplicate error
             ModelAndView mv = new ModelAndView("RegisterAgain");
             return mv;
 
         }
-        ModelAndView mv = new ModelAndView("HomePageLoggedIn");
+        ModelAndView mv = new ModelAndView("HomePageLoggedIn"); //TODO MAKE AN ALERT THAT DISPLAYS SUCCESS REGISTRATION
         return mv;
     }
 

@@ -2,33 +2,42 @@ package com.mandatory.semfour.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 @Entity
-public class User {
+@Table(name = "user")
+
+public class User implements Serializable {
 
     private static List<User> userList = new ArrayList<>();
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     @Id
-    private int Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Column(name = "username", unique = true)
+    @NotNull
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserRole role;
+
     public User(int id, String username, String password, String email) {
-        this.Id = id;
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
     }
-    public static List<User> getStudentList() {
-        return userList;
-    }
+    public User() {}
 
     public static List<User> getUserList() {
         return userList;
@@ -36,9 +45,6 @@ public class User {
 
     public static void setUserList(List<User> userList) {
         User.userList = userList;
-    }
-
-    public User() {
     }
 
     public String getUsername() {
@@ -64,36 +70,34 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
+//
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        id = id;
     }
 
+    public UserRole getRole() {
+        return role;
+    }
 
-//    public static User getUserById(long id){
-//        List<User> list = User.getUserList();
-//
-//        User theOne = new User(-1, "rootUser", "rootPassword","root@rootymail.com");
-//        for (int i = 0; i < list.size(); i++) {
-//            User u = list.get(i);
-//            if (u.getId() == id) {
-//                System.out.println(u);
-//                theOne = u;
-//                break;
-//            }
-//        }
-//        return theOne;
-//    }
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
     @Override
     public String toString() {
         return "User{" +
-                "id=" + Id +
+                "id=" + id +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
