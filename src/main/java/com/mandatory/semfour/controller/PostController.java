@@ -1,7 +1,6 @@
 package com.mandatory.semfour.controller;
 
 import com.mandatory.semfour.entity.Post;
-import com.mandatory.semfour.entity.User;
 import com.mandatory.semfour.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
