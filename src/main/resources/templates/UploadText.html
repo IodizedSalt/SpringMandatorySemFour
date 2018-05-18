@@ -22,13 +22,13 @@
     </li>
 </ul>
 <div class="container-fluid" id="textContainer">
-<form>
+    <form method="POST" enctype="multipart/form-data" action="/upload">
     <div>
         <span>Title</span>
         <input type="text" id="Title" placeholder="Enter a title for your post" size="50px" required="required"/>
     </div>
 
-    <textarea type="text" id="myText"></textarea>
+    <textarea type="text" id="file" name="file"></textarea>
 
     <button id="submitPost">Submit</button>
 </form>
