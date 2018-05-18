@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     public UserRepository ur;
 
-@RequestMapping("/login") //TODO HIDE LOG IN IF ALREADY LOGGED IN
+@RequestMapping("/login")
 public ModelAndView login() //TODO SHOW USER THAT IS LOGGED IN IN TOP
 {
     System.out.println("GREAT SUCCESS");
