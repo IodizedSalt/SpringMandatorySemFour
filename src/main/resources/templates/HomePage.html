@@ -4,71 +4,57 @@
     <meta charset="UTF-8"/>
     <title>Front Page</title>
     <!-- BOOTSTRAP REFERENCES -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="style.css"/>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+    <script th:src="@{/js/functions.js}"></script>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Redddit</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Front Page</a></li>
-                <li><a href="/login">Log In</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="">???</a></li>  <!-- TODO ADD HREF, OTHER OPTION -->
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="/">Redddit</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Front Page <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/login">Log In </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/register">Register </a>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
 </nav>
+<div>
+    <button id="updoot"><img src="../static/arrow-up.png" th:src="@{arrow-up.png}" align="left" width="20" height="20" onclick="upvote()"/></button>
+    <div style="width:1600px;height:100px;border:1px solid #000;">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a><button id="downdoot"><img src="../static/arrow-up.png" th:src="@{arrow-down.png}" align="left" width="20" height="20" onclick="downvote()"/></button></a>
+    </div>
+</div>
+<br/>
 
-<!--<div>-->
-
-    <!--<div style="width:1600px;height:100px;border:1px solid #000;">-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<br/>-->
-    <!--</div>-->
-<!--</div>-->
-<!--<br/>-->
-
-<!--<div>-->
-    <!--<img src="../static/arrow-up.png" th:src="@{arrow-up.png}" align="left" width="20" height="20" onclick="upvote()"/>-->
-    <!--<div style="width:1600px;height:100px;border:1px solid #000;">-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<img th:src="@{arrow-down.png}" align="left" width="20" height="20" onclick="downvote()"/>-->
-    <!--</div>-->
-<!--</div>-->
-<!--<br/>-->
-
-<!--<div>-->
-    <!--<img th:src="@{arrow-up.png}" align="left" width="20" height="20" onclick="upvote()"/>-->
-    <!--<div style="width:1600px;height:100px;border:1px solid #000;">-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<br/>-->
-        <!--<img th:src="@{arrow-down.png}" align="left" width="20" height="20" onclick="downvote()"/>-->
-    <!--</div>-->
-<!--</div>-->
 
 
 </body>

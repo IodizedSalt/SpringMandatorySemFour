@@ -12,6 +12,11 @@ public class Homepage {
         ModelAndView mv  = new ModelAndView("HomePage");
         return mv;
     }
+    @GetMapping(value = "/logout") //TODO GIVE A SUCCESS LOGOUT ALERT
+    public ModelAndView logout(){
+        ModelAndView mv  = new ModelAndView("HomePage");
+        return mv;
+    }
     @GetMapping("/login")
     public ModelAndView login(){
         ModelAndView mv = new ModelAndView("LogIn");
@@ -20,6 +25,16 @@ public class Homepage {
     @GetMapping("/register")
     public ModelAndView register(){
         ModelAndView mv = new ModelAndView("Register");
+        return mv;
+    }
+    @GetMapping("/upload/Image")
+    public ModelAndView imageUploader(){
+        ModelAndView mv = new ModelAndView("UploadImage");
+        return mv;
+    }
+    @GetMapping("/upload/Text")
+    public ModelAndView textUploader(){
+        ModelAndView mv = new ModelAndView("UploadText");
         return mv;
     }
 

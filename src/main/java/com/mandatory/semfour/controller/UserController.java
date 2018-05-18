@@ -19,6 +19,7 @@ public class UserController {
 @RequestMapping("/login") //TODO HIDE LOG IN IF ALREADY LOGGED IN
 public ModelAndView login() //TODO SHOW USER THAT IS LOGGED IN IN TOP
 {
+    System.out.println("GREAT SUCCESS");
     ModelAndView mv = new ModelAndView("LogIn");
     return mv;
 }
@@ -26,6 +27,12 @@ public ModelAndView login() //TODO SHOW USER THAT IS LOGGED IN IN TOP
 public ModelAndView loginAgain()
 {
     ModelAndView mv = new ModelAndView("LoginAgain");
+    return mv;
+}
+@RequestMapping("/home")
+public ModelAndView loginSuccess()
+{
+    ModelAndView mv = new ModelAndView("HomePageLoggedIn");
     return mv;
 }
 

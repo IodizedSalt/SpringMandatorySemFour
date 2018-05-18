@@ -28,18 +28,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-//                .antMatchers().permitAll()
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/user/**").access("hasRole(\"ROLE_USER\")")
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-//                .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").failureUrl("/loginAgain")
-//                .formLogin().loginPage("/login")
+                .formLogin().loginPage("/login").failureUrl("/loginAgain").defaultSuccessUrl("/home")
+
                 .usernameParameter("username").passwordParameter("password")
                 .permitAll()
                 .and()
-                .logout()
+                .logout().logoutSuccessUrl("/logout")
                 .permitAll();
+//        http.csrf().disable(); //Enables POSTMAN
     }
 }

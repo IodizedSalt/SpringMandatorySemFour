@@ -1,0 +1,34 @@
+/*#downdoot, a:active{*/
+    /*background-color: red;*/
+/*}*/
+
+/*#updoot, a:active{*/
+    /*background-color: chocolate;*/
+/*}*/
+.btn-up{
+    background-color: orangered;
+}
+.btn-down{
+    background-color: blue;
+}
+#textContainer{
+    background-color: #cee3f8;
+}
+/*body{*/
+    /*padding-top: 80px;*/
+    /*padding-left: 25px;*/
+    /*padding-right: 25px;*/
+
+/*}*/
+
+.input-group-addon {
+    border-radius: 10px;
+}
+
+.input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 20%;
+    margin-bottom: 0;
+}
