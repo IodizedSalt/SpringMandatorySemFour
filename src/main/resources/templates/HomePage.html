@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 
-    <script th:src="@{/js/functions.js}"></script>
 
 </head>
 
@@ -35,6 +34,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/register">Register </a>
             </li>
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="/home" th:text="${username}">Username</a>-->
+            <!--</li>-->
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -43,16 +45,31 @@
         </form>
     </div>
 </nav>
-<div>
-    <button id="updoot"><img src="../static/arrow-up.png" th:src="@{arrow-up.png}" align="left" width="20" height="20" onclick="upvote()"/></button>
-    <div style="width:1600px;height:100px;border:1px solid #000;">
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <a><button id="downdoot"><img src="../static/arrow-up.png" th:src="@{arrow-down.png}" align="left" width="20" height="20" onclick="downvote()"/></button></a>
+<section id="galleries">
+
+    <div class="gallery">
+        <header class="special">
+            <h2>Front Page</h2>
+        </header>
+        <div class="content">
+            <div class="media" th:each="Post : ${postList}">
+                <div>
+                    <div style="width:1600px;height:220px;border:1px solid #000;">
+                        <h4 id="titlePost"><a th:text="${Post.title}"></a></h4>
+
+                        <a th:href="${Post.content}"><img id="thumb" th:src="${Post.thumbnail}" alt="" /></a>
+                        <a id="desc" th:text="${Post.description}"></a>
+
+
+                        <h6 id="postDetails">&nbsp;&nbsp;&nbsp;&nbsp; <a th:text="${Post.timestamp}"></a></h6>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
+</section>
 <br/>
 
 

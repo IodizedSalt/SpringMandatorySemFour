@@ -1,13 +1,7 @@
 <!--TODO -->
         ------------------------------------------------------------------
         <!-- DISPLAY USERNAMES FOR EACH POST -->  (USE LOGGED IN USER VALUE AND SAVE IT TO THE POST)
-        <!-- SAVE TEXT POSTS TO DB --> (submit empty file data or create new class that accepts text paramaters)
-
-
-        <!-- -RETRIEVE AND DISPLAY POSTS ON FRONT PAGE showing thumbnail-->
         <!-- -VOTE ON POSTS AND TRACK VALUE -->
         <!-- -clean up ui and design -->
         -------------------------------------------------------------------
-        <!-- -IMPLEMENT COMMENTS ON POSTS-->
-        <!-- -SEARCH FUNTCTION -->
 

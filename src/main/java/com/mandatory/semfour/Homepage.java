@@ -1,5 +1,7 @@
 package com.mandatory.semfour;
 
+import com.mandatory.semfour.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,14 +11,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class Homepage {
+
+    @Autowired
+    PostRepository pr;
+
+
     @GetMapping(value = "/")
     public ModelAndView homePage(){
         ModelAndView mv  = new ModelAndView("HomePage");
+        mv.getModel().put("postList", pr.findAll());
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        mv.addObject("username", currentPrincipalName);
         return mv;
     }
-    @GetMapping(value = "/logout") //TODO GIVE A SUCCESS LOGOUT ALERT
+    @GetMapping(value = "/logout")
     public ModelAndView logout(){
         ModelAndView mv  = new ModelAndView("HomePage");
+        mv.getModel().put("postList", pr.findAll());
+
         return mv;
     }
     @GetMapping("/login")
@@ -35,11 +49,6 @@ public class Homepage {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         mv.addObject("username", currentPrincipalName);
-        return mv;
-    }
-    @GetMapping("/upload/Text")
-    public ModelAndView textUploader(){
-        ModelAndView mv = new ModelAndView("UploadText");
         return mv;
     }
 

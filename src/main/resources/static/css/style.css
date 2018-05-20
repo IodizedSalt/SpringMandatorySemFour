@@ -5,21 +5,64 @@
 /*#updoot, a:active{*/
     /*background-color: chocolate;*/
 /*}*/
-.btn-up{
-    background-color: orangered;
+
+
+
+
+
+
+.upvote {
+    display: inline-block;
+    overflow: hidden;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+    background-image: url(up.png);
+    background-position: 0 -25px;
 }
-.btn-down{
-    background-color: blue;
+
+
+.upvote.on {
+    background-position: 0 2px;
+}
+
+.downvote{
+    display: inline-block;
+    overflow: hidden;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+    background-image: url(down.png);
+    background-position: 0 50px;
+}
+
+.downvote.on {
+    background-position: 0 2px;
 }
 #textContainer{
     background-color: #cee3f8;
 }
-/*body{*/
-    /*padding-top: 80px;*/
-    /*padding-left: 25px;*/
-    /*padding-right: 25px;*/
+#thumb{
+    padding-left: 50px;
+}
+#titlePost{
+    padding-left: 500px;
+    /*padding-top: 20px;*/
+}
+.content{
+    padding-left: 20px;
+}
+#desc{
+    padding-left: 300px;
+}
 
-/*}*/
+#postDetails{
+    padding-left: 480px;
+}
+#description{
+    width: 400px;
+    height: 150px;
+}
 
 .input-group-addon {
     border-radius: 10px;

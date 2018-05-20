@@ -21,19 +21,19 @@ public class Post {
     @Column
     private String content;
     @Column
-    private String user;
+    private String description;
     @Column
     private String thumbnail;
     @Column
     private String timestamp;
 
 
-    public Post(int id, String title,String content, int karma , String user, String thumbnail, String timestamp) {
+    public Post(int id, String title,String content, int karma , String description, String thumbnail, String timestamp) {
         this.id = id;
         this.title = title;
         this.karma = karma;
         this.content = content;
-        this.user = user;
+        this.description = description;
         this.thumbnail = thumbnail;
         this.timestamp = timestamp;
     }
@@ -65,12 +65,12 @@ public class Post {
         this.content = content;
     }
 
-    public String getUser() {
-        return user;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setDescription(String user) {
+        this.description = user;
     }
 
     public String getThumbnail() {
@@ -103,7 +103,7 @@ public class Post {
                 "title='" + title + '\'' +
                 ", karma=" + karma +
                 ", content='" + content + '\'' +
-                ", user=" + user +
+                ", description=" + description +
                 ", thumbnail='" + thumbnail + '\'' +
                 ", timestamp=" + timestamp +
                 ", id=" + id +

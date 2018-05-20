@@ -2,6 +2,7 @@ package com.mandatory.semfour.controller;
 
 import com.mandatory.semfour.entity.User;
 import com.mandatory.semfour.entity.UserRole;
+import com.mandatory.semfour.repository.PostRepository;
 import com.mandatory.semfour.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,9 @@ public class UserController {
 
     @Autowired
     public UserRepository ur;
+
+    @Autowired
+    PostRepository pr;
 
 @RequestMapping("/login")
 public ModelAndView login() //TODO SHOW USER THAT IS LOGGED IN IN TOP
@@ -39,6 +43,7 @@ public ModelAndView loginSuccess(ModelMap model)
     String currentPrincipalName = authentication.getName();
 
     ModelAndView mv = new ModelAndView("HomePageLoggedIn");
+    mv.getModel().put("postList", pr.findAll());
 
     mv.addObject("username", currentPrincipalName);
     return mv;
@@ -47,7 +52,7 @@ public ModelAndView loginSuccess(ModelMap model)
     @PostMapping(value = "/register")
     private ModelAndView registerNew(@RequestParam (name = "Id", defaultValue = "-1") int Id,
                                      @RequestParam(name = "emailReg") String email,
-                                     @RequestParam(name="usernameReg", defaultValue = "DEFAULT_USER") String username,
+                                     @RequestParam(name="usernameReg", defaultValue = "") String username,
                                      @RequestParam(name = "passwordReg") String password){
         try{
 
@@ -64,12 +69,15 @@ public ModelAndView loginSuccess(ModelMap model)
         }catch (NullPointerException e) {
             System.out.println("NULL ERROR");
         }catch (ClassCastException e){
-            System.out.println("DUPLICATE DETECTED");                       //TODO display specific username/email duplicate error
+            System.out.println("DUPLICATE DETECTED");
             ModelAndView mv = new ModelAndView("RegisterAgain");
             return mv;
 
         }
-        ModelAndView mv = new ModelAndView("HomePageLoggedIn"); //TODO MAKE AN ALERT THAT DISPLAYS SUCCESS REGISTRATION
+        ModelAndView mv = new ModelAndView("HomePageLoggedIn");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        mv.addObject("username", currentPrincipalName);
         return mv;
     }
 

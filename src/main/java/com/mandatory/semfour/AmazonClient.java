@@ -102,25 +102,20 @@ public class AmazonClient {
         int height = originalImage.getHeight();
         int width = originalImage.getWidth();
 
-        // The image is already a square
-        if (height == width) {
-            return originalImage;
-        }
-
         // Compute the size of the square
         int squareSize = (height > width ? width : height);
 
         // Coordinates of the image's middle
         int xc = width / 2;
         int yc = height / 2;
+        int x = xc, y = yc, w = 150, h = 150;
 
-        // Crop
-        BufferedImage croppedImage = originalImage.getSubimage(
-                xc - (squareSize / 2), // x coordinate of the upper-left corner
-                yc - (squareSize / 2), // y coordinate of the upper-left corner
-                squareSize,            // widht
-                squareSize             // height
-        );
+
+        BufferedImage croppedImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+
+        croppedImage.getGraphics().drawImage(originalImage, 0, 0, w, h, x, y, x + w, y + h, null);
+        croppedImage.setRGB(0,0,0);
+//        );
 
         return croppedImage;
     }

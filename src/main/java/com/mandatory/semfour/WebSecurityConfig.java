@@ -39,6 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutSuccessUrl("/logout")
                 .permitAll();
-        http.csrf().disable(); //Enables POSTMAN
+//                http.csrf().disable(); //Enables POSTMAN
     }
 }

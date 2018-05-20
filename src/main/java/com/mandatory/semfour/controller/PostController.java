@@ -1,8 +1,10 @@
 package com.mandatory.semfour.controller;
 
+import com.amazonaws.util.IOUtils;
 import com.mandatory.semfour.entity.Post;
 import com.mandatory.semfour.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mandatory.semfour.AmazonClient;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -27,34 +32,36 @@ public class PostController {
     public ModelAndView uploadFile(@RequestParam(name = "file") MultipartFile file,
                                    @RequestParam(name = "id", defaultValue = "-1") int id,
                                    @RequestParam(name = "title", defaultValue = "no_name") String title,
-                                   @RequestParam(name = "username", defaultValue = "anon") String user) {
+                                   @RequestParam(name = "description", defaultValue = "") String description) {
 
         System.out.println("Saved to s3 " + title +": " + file.getOriginalFilename());
 
 
         String content = this.amazonClient.uploadFile(file, title);
         String thumbnail = generateThumbnailname(content);
-        String timestamp = new SimpleDateFormat("dd-MM-YYYY_HH:mm:ss").format(Calendar.getInstance().getTime());
+        String timestamp = new SimpleDateFormat("dd-MM-YYYY HH:mm:ss").format(Calendar.getInstance().getTime());
 
-        Post post = new Post(id, title, content, 0, user, thumbnail, timestamp);
+        Post post = new Post(id, title, content, 0, description, thumbnail, timestamp);
 
         if (content.startsWith("ERROR")) {
             ModelAndView mv = new ModelAndView("HomePageLoggedIn");
             return mv;
-//            return content;
         } else {
             post.setId(id);
             post.setTitle(title);
             post.setContent(content);
             post.setThumbnail(generateThumbnailname(content));
-            post.setUser(user);
+            post.setDescription(description);
             post.setTimestamp(timestamp);
             pr.save(post);
 
             ModelAndView mv = new ModelAndView("HomePageLoggedIn");
+            mv.getModel().put("postList", pr.findAll());
+
             return mv;
         }
     }
+
         private String generateThumbnailname(String orignalname){
 
             String mainStr = orignalname;
@@ -68,4 +75,5 @@ public class PostController {
 
             return thumbUrl.toString();
         }
+
 }

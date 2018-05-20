@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Front Page - Logged</title>
@@ -10,9 +10,6 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-
-    <script th:src="@{/js/functions.js}"></script>
-
 
 </head>
 
@@ -34,7 +31,6 @@
                     Submit new post
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/upload/Text">New Text Post</a>
                     <a class="dropdown-item" href="/upload/Image">New Image Post</a>
                 </div>
             </li>
@@ -52,17 +48,34 @@
     </div>
 </nav>
 
-<!--&lt;!&ndash;<div>&ndash;&gt;-->
-    <!--&lt;!&ndash;<button id="updoot"><img src="../static/arrow-up.png" th:src="@{arrow-up.png}" align="left" width="20" height="20" onclick="upvote()"/></button>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div style="width:1600px;height:100px;border:1px solid #000;">&ndash;&gt;-->
-        <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<a><button id="downdoot"><img src="../static/arrow-up.png" th:src="@{arrow-down.png}" align="left" width="20" height="20" onclick="downvote()"/></button></a>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--<br/>-->
+<section id="galleries">
+
+    <div class="gallery">
+        <header class="special">
+            <h2>Front Page</h2>
+        </header>
+        <div class="content">
+            <div class="media" th:each="Post : ${postList}">
+                <div>
+                    <div style="width:1600px;height:220px;border:1px solid #000;">
+                        <h4 id="titlePost"><a th:text="${Post.title}"></a></h4>
+
+                        <a th:href="${Post.content}"><img id="thumb" th:src="${Post.thumbnail}" alt="" /></a>
+                        <a id="desc" th:text="${Post.description}"></a>
+
+
+                        <h6 id="postDetails">&nbsp;&nbsp;&nbsp;&nbsp; <a th:text="${Post.timestamp}"></a></h6>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<br/>
 
 </body>
 </html>

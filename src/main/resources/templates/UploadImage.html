@@ -38,7 +38,7 @@
                 <a class="nav-link" href="/logout">Logout</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/home" th:text="${username}">Username</a> <!--name="username"   th:value="${username}" shit doesnt work-->
+                <a class="nav-link" href="/home" th:text="${username}">Username</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -51,21 +51,19 @@
     <li class="nav-item">
         <a class="nav-link active" href="/upload/Image">Image</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/upload/Text">Text</a>
-    </li>
 </ul>
 <div class="container-fluid" id="textContainer">
 
 <!--<form th:action="@{/uploadFile}">-->
-    <form method="POST" enctype="multipart/form-data" action="/upload">
+    <form method="POST" enctype="multipart/form-data" th:action="@{/upload}" th:object= "${username}">
 
     <div>
     <span>Title</span>
     <input type="text" id="title" name="title" placeholder="Enter a title for your post" size="50px" required="required"/>
     </div>
+    <input type="file" id="file" name="file"/>
+    <textarea type="description" id="description" name="description" />
 
-<input type="file" id="file" name="file"/>
 <br/>
 
     <button id="submitPost">Submit</button>
