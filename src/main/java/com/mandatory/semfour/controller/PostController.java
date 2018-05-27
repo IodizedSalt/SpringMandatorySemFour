@@ -1,20 +1,15 @@
 package com.mandatory.semfour.controller;
 
-import com.amazonaws.util.IOUtils;
+import com.mandatory.semfour.AmazonClient;
 import com.mandatory.semfour.entity.Post;
 import com.mandatory.semfour.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import com.mandatory.semfour.AmazonClient;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 

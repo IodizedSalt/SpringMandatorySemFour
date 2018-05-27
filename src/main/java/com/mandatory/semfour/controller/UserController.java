@@ -24,7 +24,7 @@ public class UserController {
     PostRepository pr;
 
 @RequestMapping("/login")
-public ModelAndView login() //TODO SHOW USER THAT IS LOGGED IN IN TOP
+public ModelAndView login()
 {
     System.out.println("GREAT SUCCESS");
     ModelAndView mv = new ModelAndView("LogIn");
@@ -75,9 +75,11 @@ public ModelAndView loginSuccess(ModelMap model)
 
         }
         ModelAndView mv = new ModelAndView("HomePageLoggedIn");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        mv.addObject("username", currentPrincipalName);
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentPrincipalName = authentication.getName();
+        mv.getModel().put("postList", pr.findAll());
+
+//        mv.addObject("username", currentPrincipalName);
         return mv;
     }
 
